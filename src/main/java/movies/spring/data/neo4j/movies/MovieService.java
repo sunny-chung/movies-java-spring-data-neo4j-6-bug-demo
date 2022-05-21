@@ -27,7 +27,8 @@ public class MovieService {
 	}
 
 	public List<Movie> getDirectedBy(String name) {
-		return movieRepository.findAllByDirectorsName(name);
+		return movieRepository.findAllByDirectorsName2(name);
+//		return movieRepository.findAllByDirectorsName(name);
 	}
 
 	public List<Movie> getActedInBy(String name) {

@@ -11,20 +11,13 @@ import org.springframework.data.neo4j.core.schema.Relationship;
  * @author Michael J. Simons
  */
 @Node
-public class Person {
-
-	@Id
-	private final String name;
+public class Person extends Base {
 
 	private Integer born;
 
 	public Person(Integer born, String name) {
+		super(name);
 		this.born = born;
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public Integer getBorn() {
@@ -38,7 +31,7 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person{" +
-			"name='" + name + '\'' +
+			"name='" + getName() + '\'' +
 			", born=" + born +
 			'}';
 	}

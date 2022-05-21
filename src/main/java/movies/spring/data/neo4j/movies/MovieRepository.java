@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -32,6 +33,11 @@ interface MovieRepository extends Repository<Movie, String> {
 
 	@RestResource(exported = false)
 	List<Movie> findAllByDirectorsName(String name);
+
+	@Query("MATCH (n:`Movie`)<-[r_0:`DIRECTED`]-(m_0:`Person`) " +
+			"MATCH (n)<-[r1:`ACTED_IN`]-(m1:`Person`) " +
+			"WHERE m_0.name = $name RETURN n, COLLECT(r1), COLLECT(m1), COLLECT(r_0), COLLECT(m_0)")
+	List<Movie> findAllByDirectorsName2(String name);
 
 	@RestResource(exported = false)
 	List<Movie> findAllByActorsPersonName(String name);

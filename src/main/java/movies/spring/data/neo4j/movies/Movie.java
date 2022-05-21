@@ -26,7 +26,7 @@ public class Movie {
 	private List<Actor> actors = new ArrayList<>();
 
 	@Relationship(type = "DIRECTED", direction = Direction.INCOMING)
-	private List<Person> directors = new ArrayList<>();
+	private List<Base> directors = new ArrayList<>();
 
 	private Integer released;
 
@@ -51,7 +51,7 @@ public class Movie {
 		return description;
 	}
 
-	public List<Person> getDirectors() {
+	public List<Base> getDirectors() {
 		return directors;
 	}
 
